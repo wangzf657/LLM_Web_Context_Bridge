@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Context Bridge</title>
+  <link href="./sidepanel.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <div class="header">
+      <h1 id="headerTitle">📦 项目上下文</h1>
+      <div class="header-actions">
+        <button id="langToggleBtn" class="icon-btn" title="切换语言/Change Language">
+          🌐
+        </button>
+        <button id="helpBtn" class="icon-btn" title="帮助/Help">
+          ?
+        </button>
+        <a id="githubLink" href="https://github.com" target="_blank" class="icon-btn" title="GitHub">
+          <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 帮助浮窗 -->
+    <div id="helpModal" class="modal hidden">
+      <div class="modal-content">
+        <h3 id="helpTitle">🔒 安全说明</h3>
+        <p id="helpText"></p>
+        <button id="closeHelpBtn" class="btn btn-primary">OK</button>
+      </div>
+    </div>
+
+    <!-- 工具栏：按钮+状态 -->
+    <div class="toolbar-row">
+      <div class="toolbar-buttons">
+        <button id="selectFolderBtn" class="btn-small btn-primary">
+          📁 <span id="selectFolderText">选择文件夹</span>
+        </button>
+        <button id="refreshBtn" class="btn-small btn-secondary" style="display: none;">
+          🔄 <span id="refreshText">刷新</span>
+        </button>
+        <button id="generateBtn" class="btn-small btn-secondary" disabled>
+          📝 <span id="generateText">生成目录</span>
+        </button>
+      </div>
+      <div class="toolbar-status">
+        <span id="selectedCount">已选: 0</span>
+        <span id="totalSize">大小: 0B</span>
+      </div>
+    </div>
+
+    <div id="projectTree" class="tree-container">
+      <div class="empty-state">
+        <p id="emptyText">请选择一个项目文件夹</p>
+      </div>
+    </div>
+
+    <div id="promptPreview" class="prompt-preview hidden">
+      <div class="prompt-header">
+        <h3 id="promptTitle">Prompt:</h3>
+        <div class="prompt-actions">
+          <button id="copyPromptBtn" class="icon-btn-small" title="复制">
+            📋 <span id="copyPromptText">复制</span>
+          </button>
+          <button id="clearPromptBtn" class="icon-btn-small" title="清空">✕</button>
+        </div>
+      </div>
+      <textarea id="promptText" class="prompt-textarea" placeholder="点击生成按钮或手动编辑..."></textarea>
+    </div>
+  </div>
+
+  <script type="module" src="./sidepanel.js"></script>
+</body>
+</html>

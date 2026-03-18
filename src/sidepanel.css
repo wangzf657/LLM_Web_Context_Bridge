@@ -1,0 +1,444 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 14px;
+  background: #f5f5f5;
+  color: #333;
+  overflow-x: hidden;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 12px;
+}
+
+.header {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.header-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: white;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.icon-btn:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.icon-btn-small {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon-btn-small:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.icon-btn-small:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.github-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-content h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #10a37f;
+}
+
+.modal-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+  white-space: pre-line;
+}
+
+/* Toolbar Row - 按钮和状态在一行 */
+.toolbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 8px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.toolbar-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.toolbar-status {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #666;
+  flex-shrink: 0;
+}
+
+/* Small buttons */
+.btn-small {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.btn-small:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #10a37f;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #0d8a6a;
+}
+
+.btn-secondary {
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #e8e8e8;
+}
+
+/* Normal buttons */
+.btn {
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tree Container */
+.tree-container {
+  flex: 0 0 auto;
+  max-height: 280px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  color: #999;
+  font-size: 13px;
+}
+
+.file-tree {
+  list-style: none;
+}
+
+.tree-item {
+  padding: 3px 0;
+  user-select: none;
+}
+
+.tree-item.folder > .folder-content {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 4px;
+  border-radius: 4px;
+}
+
+.tree-item.folder > .folder-content:hover {
+  background: #f0f0f0;
+}
+
+.tree-item.file {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 4px;
+  border-radius: 4px;
+}
+
+.tree-item.file:hover {
+  background: #f5f5f5;
+}
+
+.folder-icon {
+  color: #f5a623;
+  font-size: 13px;
+}
+
+.file-icon {
+  color: #999;
+  font-size: 13px;
+}
+
+.tree-checkbox {
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.expand-icon {
+  cursor: pointer;
+  font-size: 9px;
+  color: #666;
+  width: 12px;
+  flex-shrink: 0;
+}
+
+.file-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.file-size {
+  font-size: 11px;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.copy-content-btn {
+  padding: 2px 6px;
+  font-size: 11px;
+  background: #e8f5e9;
+  color: #10a37f;
+  border: 1px solid #c8e6c9;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.copy-content-btn:hover {
+  background: #10a37f;
+  color: white;
+  border-color: #10a37f;
+}
+
+.tree-children {
+  list-style: none;
+  padding-left: 16px;
+}
+
+.collapsed .tree-children {
+  display: none;
+}
+
+/* Prompt Preview */
+.prompt-preview {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.prompt-preview.hidden {
+  display: none;
+}
+
+.prompt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.prompt-header h3 {
+  font-size: 13px;
+  color: #333;
+}
+
+.prompt-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.prompt-textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 150px;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  resize: none;
+  background: #f9f9f9;
+}
+
+.prompt-textarea:focus {
+  outline: none;
+  border-color: #10a37f;
+  background: white;
+}
+
+/* Messages */
+.error-message {
+  background: #fee;
+  color: #c00;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.warning-message {
+  background: #fff3cd;
+  color: #856404;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.success-message {
+  background: #d4edda;
+  color: #155724;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+/* Scrollbar */
+.tree-container::-webkit-scrollbar,
+.prompt-textarea::-webkit-scrollbar {
+  width: 5px;
+}
+
+.tree-container::-webkit-scrollbar-track,
+.prompt-textarea::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.tree-container::-webkit-scrollbar-thumb,
+.prompt-textarea::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.tree-container::-webkit-scrollbar-thumb:hover,
+.prompt-textarea::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
