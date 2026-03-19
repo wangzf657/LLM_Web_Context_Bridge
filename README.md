@@ -37,7 +37,7 @@ A Chrome extension that generates structured project context prompts for Large L
 
 1. Clone this repository
    ```bash
-   git clone https://github.com/your-username/llm-web-context-bridge.git
+   git clone https://github.com/wangzf657/LLM_Web_Context_Bridge.git
    cd llm-web-context-bridge
    ```
 
@@ -184,7 +184,7 @@ pnpm run dev
 
 1. 克隆仓库
    ```bash
-   git clone https://github.com/your-username/llm-web-context-bridge.git
+   git clone https://github.com/wangzf657/LLM_Web_Context_Bridge.git
    cd llm-web-context-bridge
    ```
 

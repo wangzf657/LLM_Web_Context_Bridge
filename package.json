@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/llm-web-context-bridge.git"
+    "url": "https://github.com/wangzf657/LLM_Web_Context_Bridge.git"
   },
   "scripts": {
     "build": "vite build --config scripts/build-extension.js",
